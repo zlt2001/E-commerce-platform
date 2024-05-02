@@ -11,11 +11,12 @@ import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import './app.scss'
 
+// 定义 Layout 组件
 const Layout = () => {
   return (
     <div className='app'>
       <Navbar />
-      {/* 哪里想放嵌套路由，就放 Outlet 组件 */}
+      {/* 哪里想放 children 嵌套路由，就放 Outlet 组件 */}
       <Outlet />
       <Footer />
     </div>
@@ -39,7 +40,8 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
-      }]
+      }
+    ]
   },
 ]);
 

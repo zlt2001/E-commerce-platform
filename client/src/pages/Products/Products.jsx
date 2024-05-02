@@ -12,9 +12,9 @@ const Products = () => {
     const [selectedCat, setSelectedCat] = useState([])
 
     // 子种类的数据
-    const { data, loading, error } = useFetch(`/sub-categories`)
-    console.log("products奶奶的")
-    console.log(data)
+    const { data, loading, error } = useFetch(`/sub-categories?&[filters][categories][id]=${catId}`)
+    console.log(error)
+
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -26,7 +26,6 @@ const Products = () => {
                 : selectedCat.filter((item) => item !== value)
         )
     }
-
 
     return (
         <div className="products">

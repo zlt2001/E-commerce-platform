@@ -20,6 +20,7 @@ const Cart = () => {
     return (
         <div className="cart">
             <h1>Products in your cart</h1>
+            {/* 遍历购物车里的东西 */}
             {products?.map(item => (
                 <div className='item' key={item.id}>
                     <img src={item.img} alt="" />
@@ -31,6 +32,8 @@ const Cart = () => {
                     <DeleteOutlinedIcon className='delete' onClick={() => dispatch(removeItem(item.id))} />
                 </div>
             ))}
+
+
             <div className="bottom">
                 <div className="total">
                     <span>SUBTOTAL</span>

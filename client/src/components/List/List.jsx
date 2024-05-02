@@ -4,13 +4,24 @@ import './List.scss'
 import useFetch from '../../hooks/useFetch'
 
 const List = ({ catId, maxPrice, sort, subCats }) => {
-    // const url = `/products?populate=*&[filters][categories][id]=${catId}${subCats.map((item) => `&[filters][sub_categories][id][$eq]=${item}`)}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
-    const url = `/products?populate=*&[filters][categories][id]=${catId}${subCats.map((item) => `&[filters][sub_categories][id][$eq]=${item}`)}&[filters][price][$lte]=${maxPrice}&sort=price:${sort}`
+    /* const url = `/products?populate=*
+                                        &[filters][categories][id]=${catId}
+                                        ${subCats.map((item) => `&[filters][sub_categories][id][$eq]=${item}`)}
+                                        &[filters][price][$lte]=${maxPrice}
+                                        &sort=price:${sort}`
+                                        */
+    const url = `/products?populate=*
+                                        &[filters][categories][id]=${catId}
+                                        ${subCats.map((item) => `&[filters][sub_categories][id][$eq]=${item}`)}
+                                        `
+
 
     const { data, loading, error } = useFetch(url)
-    console.log("他妈的")
-    console.log(data)
-    console.log(error)
+    console.log({ catId, maxPrice, sort, subCats })
+
+    // console.log("List他妈的")
+    // console.log(data)
+    // console.log(error)
 
     return (
         <div className="list">

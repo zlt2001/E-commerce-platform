@@ -812,7 +812,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::sub-category.sub-category'
     >;
-    img: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
