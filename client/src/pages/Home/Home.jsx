@@ -7,11 +7,15 @@ import Contact from '../../components/Contact/Contact'
 
 const Home = () => {
     return (
-        <div>
+        <div className='home'>
             <Slider />
-            <FeaturedProduct type='Featured' />
+            <div className="featured">
+                <FeaturedProduct type='Featured' />
+            </div>
             <Categories />
-            <FeaturedProduct type='Trending' />
+            <div className="trending">
+                <FeaturedProduct type='Trending' />
+            </div>
             <Contact />
         </div>
     )

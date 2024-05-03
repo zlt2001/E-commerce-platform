@@ -1,0 +1,14 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 800px;
+    // 实现 p 标签居中
+    margin: 20px auto;
+
+    p {
+        color: gray;
+    }
+}

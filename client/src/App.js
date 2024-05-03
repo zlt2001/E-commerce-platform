@@ -12,6 +12,8 @@ import Footer from './components/Footer/Footer'
 import './app.scss'
 import WishList from './pages/WishList/WishList';
 import LogIn from './pages/LogIn/LogIn';
+import About from './pages/About/About';
+import Contact from './components/Contact/Contact';
 
 // 定义 Layout 组件
 const Layout = () => {
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LogIn />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       }
     ]
   },

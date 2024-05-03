@@ -58,16 +58,13 @@ const Navbar = () => {
                 {/* 右边 */}
                 <div className="right">
                     <div className="item">
-                        <Link className='link' to="/products/1">Homepages</Link>
+                        <Link className='link' to="/">Homepage</Link>
                     </div>
                     <div className="item">
-                        <Link className='link' to="/products/2">About</Link>
+                        <Link className='link' to="/about">About</Link>
                     </div>
                     <div className="item">
-                        <Link className='link' to="/products/3">Contact</Link>
-                    </div>
-                    <div className="item">
-                        <Link className='link' to="/products/4">Store</Link>
+                        <Link className='link' to="/contact">Contact</Link>
                     </div>
                     <div className="icons">
                         <SearchIcon />
