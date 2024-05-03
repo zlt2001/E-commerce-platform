@@ -10,6 +10,8 @@ import Product from './pages/Product/Product'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import './app.scss'
+import WishList from './pages/WishList/WishList';
+import LogIn from './pages/LogIn/LogIn';
 
 // 定义 Layout 组件
 const Layout = () => {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <Product />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishList />,
+      },
+      {
+        path: "/login",
+        element: <LogIn />,
       }
     ]
   },

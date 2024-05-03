@@ -8,11 +8,12 @@ import useFetch from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartReducer';
+import { addToWish } from '../../redux/wishReducer';
 
 const Product = () => {
     const { id } = useParams();
     const [selectedImg, setSelectedImg] = useState('img');
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
     const url = `/products/${id}?populate=*`;
     const { data, loading, error } = useFetch(url);
@@ -43,7 +44,7 @@ const Product = () => {
                 <span className='price'>${data.attributes.price}</span>
                 <p>{data.attributes.desc}</p>
                 <div className="quantity">
-                    <button onClick={() => setQuantity(prev => prev === 0 ? 0 : prev - 1)}>-</button>
+                    <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
                     {quantity}
                     <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
                 </div>
@@ -62,8 +63,18 @@ const Product = () => {
                     <AddShoppingCartIcon /> ADD TO CART
                 </button>
                 {/* add product to wishlist */}
-                <div className="otherAdd">
-                    <button className='wishList'>
+                <div className="otherAdd" >
+                    <button className='wishList' onClick={() => dispatch(addToWish(
+                        // 传入的这个对象会成为payload，要想获取数据，例如payload.id
+                        {
+                            id: data.id,
+                            title: data.attributes.title,
+                            desc: data.attributes.desc,
+                            price: data.attributes.price,
+                            img: data.attributes.img,
+                            img2: data.attributes.img2,
+                            quantity
+                        }))}>
                         <FavoriteBorderIcon /> ADD TO WISH LIST
                     </button>
                     <button className='compare'>

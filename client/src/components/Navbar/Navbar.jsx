@@ -20,6 +20,8 @@ const Navbar = () => {
         return quantitySum
     }
 
+    const showCartHandler = () => setCartOpen(!cartOpen)
+
     return (
         // 导航栏分成三块
         <div className='navbar'>
@@ -69,10 +71,17 @@ const Navbar = () => {
                     </div>
                     <div className="icons">
                         <SearchIcon />
-                        <PersonOutlineIcon />
-                        <FavoriteBorderIcon />
+                        {/* user log in icon */}
+                        <Link className='link' to="/login">
+                            <PersonOutlineIcon />
+                        </Link>
+                        {/* wish list icon */}
+                        <Link className='link' to="/wishlist">
+                            <FavoriteBorderIcon />
+                        </Link>
+                        {/* cart icon */}
                         <div className="cartIcon">
-                            <ShoppingCartIcon onClick={() => setCartOpen(!cartOpen)} />
+                            <ShoppingCartIcon onClick={showCartHandler} />
                             <span>{totalQuantity()}</span>
                         </div>
                     </div>

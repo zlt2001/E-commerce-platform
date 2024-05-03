@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from './cartReducer'
+import wishReducer from './wishReducer'
 import {
     persistStore,
     persistReducer,
@@ -19,13 +20,16 @@ const persistConfig = {
     storage,
 }
 
-// 2. 创建 Redux Persist 的持久化 reducer：使用 persistReducer 函数，将 Redux 的 reducer 和 Redux Persist 的配置对象结合起来，创建一个新的持久化 reducer
-const persistedReducer = persistReducer(persistConfig, cartReducer)
+// 2. 创建 Redux Persist 的持久化 reducer：使用 persistReducer 函数，多个reducer就创建多个持久化的 reducer
+const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+const persistedWishReducer = persistReducer(persistConfig, wishReducer);
 
 // 3. 创建 Redux Persist 的存储：使用 persistStore 函数，传入 Redux store 和持久化 reducer，创建一个持久化存储对象
 export const store = configureStore({
+    // 有多个持久化的 reducer
     reducer: {
-        cart: persistedReducer
+        cart: persistedCartReducer,
+        wish: persistedWishReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
