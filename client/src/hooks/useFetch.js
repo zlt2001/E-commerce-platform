@@ -21,8 +21,8 @@ const useFetch = (url) => {
         }
         fetchData()
     }, [url])
-    console.log(".........................")
-    console.log(data)
+    // console.log(".........................")
+    // console.log(data)
     return { data, loading, error }
 
 }

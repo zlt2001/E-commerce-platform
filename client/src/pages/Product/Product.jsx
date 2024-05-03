@@ -47,17 +47,21 @@ const Product = () => {
                     {quantity}
                     <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
                 </div>
-                <button className='add' onClick={() => dispatch(addToCart({
-                    id: data.id,
-                    title: data.attributes.title,
-                    desc: data.attributes.desc,
-                    price: data.attributes.price,
-                    img: data.attributes.img,
-                    img2: data.attributes.img2,
-                    quantity
-                }))}>
+                {/* add product to cart */}
+                <button className='add' onClick={() => dispatch(addToCart(
+                    // 传入的这个对象会成为payload，要想获取数据，例如payload.id
+                    {
+                        id: data.id,
+                        title: data.attributes.title,
+                        desc: data.attributes.desc,
+                        price: data.attributes.price,
+                        img: data.attributes.img,
+                        img2: data.attributes.img2,
+                        quantity
+                    }))}>
                     <AddShoppingCartIcon /> ADD TO CART
                 </button>
+                {/* add product to wishlist */}
                 <div className="otherAdd">
                     <button className='wishList'>
                         <FavoriteBorderIcon /> ADD TO WISH LIST

@@ -11,6 +11,7 @@ const Cart = () => {
     const totalPrice = () => {
         let total = 0
         products.forEach((item) => { total += item.quantity * item.price });
+        // 保留2位小数
         return total.toFixed(2)
     }
 

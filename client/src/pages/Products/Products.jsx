@@ -8,13 +8,11 @@ const Products = () => {
     // 把id从字符串转为int
     const catId = parseInt(useParams().id)
     const [maxPrice, setmaxPrice] = useState(1000)
-    const [sort, setSort] = useState(null)
+    const [sort, setSort] = useState('desc')
     const [selectedCat, setSelectedCat] = useState([])
 
     // 子种类的数据
     const { data, loading, error } = useFetch(`/sub-categories?&[filters][categories][id]=${catId}`)
-    console.log(error)
-
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -68,7 +66,9 @@ const Products = () => {
             {/* 右部 */}
             <div className="right">
                 <img className='catImg' src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
-                <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedCat} />
+                <div className="lists">
+                    <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedCat} />
+                </div>
             </div>
         </div>
     )

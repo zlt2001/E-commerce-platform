@@ -11,6 +11,7 @@ root.render(
     {/* <React.StrictMode> */}
     <Provider store={store}>
       {/* 缓存，购物车更新不会reset */}
+      {/* 4. 将 Redux Persist 的存储对象包装在 Redux Provider 中： */}
       <PersistGate loading={"loading"} persistor={persistor}>
         <App />
       </PersistGate>
