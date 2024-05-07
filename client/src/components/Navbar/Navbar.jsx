@@ -73,7 +73,7 @@ const Navbar = () => {
                             <PersonOutlineIcon />
                         </Link>
                         {/* wish list icon */}
-                        <Link className='link' to="/wishlist">
+                        <Link className='link' to="/wishlist" target="_blank">
                             <FavoriteBorderIcon />
                         </Link>
                         {/* cart icon */}

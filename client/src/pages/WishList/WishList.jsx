@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './WishList.scss'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch } from 'react-redux';
-import { removeItem, resetWish } from '../../redux/wishReducer';
+import { addQuantity, reduceQuantity, removeItem, resetWish } from '../../redux/wishReducer';
 import { addToCart } from '../../redux/cartReducer';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
@@ -12,10 +12,8 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 const WishList = () => {
     // 使用 useSelector 获取 redux 状态
     const products = useSelector(state => state.wish.products)
-    // console.log(products)
+    console.log(products)
     const dispatch = useDispatch();
-
-    const [quantity, setQuantity] = useState(1)
 
     return (
         <div className="wishlist">
@@ -32,14 +30,16 @@ const WishList = () => {
                     {/* 增减数量，计算价格 */}
                     <div className="detail">
                         <div className="amount">
-                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
-                            <h3>{quantity}</h3>
-                            <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
+                            {/* 减 */}
+                            <button onClick={() => dispatch(reduceQuantity({ id: item.id, }))}>-</button>
+                            <h3>{item.quantity}</h3>
+                            {/* 加 */}
+                            <button onClick={() => dispatch(addQuantity({ id: item.id, }))}>+</button>
                             <h3>${item.price}</h3>
                         </div>
-                        <h2>Total: $ {item.price * quantity}</h2>
+                        <h2>Total: $ {item.price * item.quantity}</h2>
                     </div>
-
+                    {/* 添加购物车 */}
                     <div className="cartAction">
                         {/* 添加到购物车 */}
                         <button className='add' onClick={() => dispatch(addToCart(
@@ -50,7 +50,7 @@ const WishList = () => {
                                 price: item.price,
                                 img: item.img,
                                 img2: item.img2,
-                                quantity
+                                quantity: item.quantity,
                             }
                         ))}>
                             <AddShoppingCartIcon /> ADD TO CART
