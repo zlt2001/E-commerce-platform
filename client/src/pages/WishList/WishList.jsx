@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useState } from 'react';
 import './WishList.scss'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch } from 'react-redux';

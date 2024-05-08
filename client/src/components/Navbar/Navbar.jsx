@@ -5,15 +5,26 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './Navbar.scss'
 import { useState } from 'react';
 import Cart from '../Cart/Cart';
 import { useSelector } from 'react-redux'
-
+import { logOut } from '../../redux/authReducer';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
     const [cartOpen, setCartOpen] = useState(false)
+    // const [isLogged, setIsLogged] = useState(false)
+    // 获取redux中的购物车state
     const products = useSelector(state => state.cart.products)
+    const dispatch = useDispatch()
+
+
+    // 获取登录state
+    const logState = useSelector(state => state.auth.isLogged)
+    console.log(logState)
+
     const totalQuantity = () => {
         let quantitySum = 0
         products.map((item) => quantitySum += item.quantity)
@@ -21,6 +32,10 @@ const Navbar = () => {
     }
 
     const showCartHandler = () => setCartOpen(!cartOpen)
+
+    const logOutHandler = () => {
+        dispatch(logOut())
+    }
 
     return (
         // 导航栏分成三块
@@ -30,10 +45,6 @@ const Navbar = () => {
                 <div className="left">
                     <div className="item">
                         <img src="/img/en.png" alt="" />
-                        <ExpandMoreIcon />
-                    </div>
-                    <div className="item">
-                        <span>USD</span>
                         <ExpandMoreIcon />
                     </div>
                     <div className="item">
@@ -68,25 +79,39 @@ const Navbar = () => {
                     </div>
                     <div className="icons">
                         <SearchIcon />
-                        {/* user log in icon */}
-                        <Link className='link' to="/login">
-                            <PersonOutlineIcon />
-                        </Link>
+
+                        {(!logState) &&
+                            (<Link className='link' to="/login">
+                                <PersonOutlineIcon />
+                            </Link>)
+                        }
+
                         {/* wish list icon */}
-                        <Link className='link' to="/wishlist" target="_blank">
-                            <FavoriteBorderIcon />
-                        </Link>
+                        {logState &&
+                            (<Link className='link' to="/wishlist" target="_blank">
+                                <FavoriteBorderIcon />
+                            </Link>)
+                        }
+
                         {/* cart icon */}
-                        <div className="cartIcon">
-                            <ShoppingCartIcon onClick={showCartHandler} />
-                            <span>{totalQuantity()}</span>
-                        </div>
+                        {logState &&
+                            (<div className="cartIcon">
+                                <ShoppingCartIcon onClick={showCartHandler} />
+                                <span>{totalQuantity()}</span>
+                            </div>)
+                        }
+
+                        {logState &&
+                            (<Link className='link' to="/" onClick={logOutHandler}>
+                                <LogoutIcon />
+                            </Link>)
+                        }
                     </div>
 
                 </div>
             </div>
             {cartOpen && <Cart />}
-        </div>
+        </div >
     )
 }
 

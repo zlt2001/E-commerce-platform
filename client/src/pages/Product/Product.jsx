@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartReducer';
 import { addToWish } from '../../redux/wishReducer';
+import NeedAuth from '../../components/NeedAuth/NeedAuth';
 
 const Product = () => {
     const { id } = useParams();
@@ -49,17 +50,19 @@ const Product = () => {
                     <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
                 </div>
                 {/* add product to cart */}
-                <button className='add' onClick={() => dispatch(addToCart(
-                    // 传入的这个对象会成为payload，要想获取数据，例如payload.id
-                    {
-                        id: data.id,
-                        title: data.attributes.title,
-                        desc: data.attributes.desc,
-                        price: data.attributes.price,
-                        img: data.attributes.img,
-                        img2: data.attributes.img2,
-                        quantity
-                    }))}>
+                <button className='add' onClick={() =>
+
+                    dispatch(addToCart(
+                        // 传入的这个对象会成为payload，要想获取数据，例如payload.id
+                        {
+                            id: data.id,
+                            title: data.attributes.title,
+                            desc: data.attributes.desc,
+                            price: data.attributes.price,
+                            img: data.attributes.img,
+                            img2: data.attributes.img2,
+                            quantity
+                        }))}>
                     <AddShoppingCartIcon /> ADD TO CART
                 </button>
                 {/* add product to wishlist */}
